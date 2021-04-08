@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios_baseURL</title>
+</head>
+<body>
+    <button onclick="testGet()">GET请求</button>
+    <button onclick="testPost()">POST请求</button>
+    <button onclick="testPut()">PUT请求</button>
+    <button onclick="testDelete()">DELETE请求</button>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://localhost:3000/';
+        //1.get请求
+        function testGet() {
+            axios({
+                url: "posts",
+                // url: "http://localhost:3000/posts2",
+                method: 'get',
+                // params: {
+                //     id: 1
+                // }
+            }).then(res => {
+                console.log('/posts get:>> ', res);
+            },
+            error =>{
+                alert(error.message)
+            })
+        }
+        //2.post请求
+        function testPost() {
+            axios({
+                url: "posts",
+                method: "post",
+                data: {
+                    "title": "json-server3",
+                    "author": "typicode3"
+                }
+            }).then(res => {
+                console.log('/posts post :>> ', res.data);
+            },
+            error =>{
+                alert(error.message)
+            })
+        }
+        //3.put请求
+        function testPut() {
+            axios({
+                url: "posts/2",
+                method: "put",
+                data: {
+                    "title": "json-server....",
+                    "author": "typicode......"
+                }
+            }).then(res => {
+                console.log('/posts put :>> ', res);
+            },
+            error =>{
+                alert(error.message)
+            })
+        }
+        //4.delete请求
+        function testDelete() {
+            axios({
+                url: "posts/2",
+                method: "delete",
+            }).then(res => {
+                console.log('/posts put :>> ', res);
+            },
+            error =>{
+                alert(error.message)
+            })
+        }
+    </script>
+</body>
+</html>
